@@ -125,6 +125,252 @@ Tone: Ultra-precise, dry, quantitative, technical.`,
 const DEFAULT_GEMINI_API_KEY = "AIzaSyDcd4dHBewHDORmo6KPbIps3cIvwxNzoDk";
 let currentPersona = "gt-fan";
 
+// ==========================================
+// TATA IPL 2026 Encyclopedic Offline Database
+// ==========================================
+const ipl2026Database = {
+  schedule: {
+    title: "📅 TATA IPL 2026 Schedule & Format",
+    content: `
+      <p>The <strong>TATA IPL 2026</strong> season runs from <strong>March 28, 2026, to May 31, 2026</strong>. The tournament features 74 high-octane matches played across India.</p>
+      <div class="chat-table-wrapper">
+        <table class="chat-table">
+          <thead>
+            <tr>
+              <th>Phase</th>
+              <th>Details</th>
+              <th>Key Highlights</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>League Stage</strong></td>
+              <td>70 Matches (14 games/team)</td>
+              <td>Home & Away format, top 4 qualify</td>
+            </tr>
+            <tr>
+              <td><strong>Qualifier 1</strong></td>
+              <td>Late May 2026</td>
+              <td>1st vs 2nd place (winner to final)</td>
+            </tr>
+            <tr>
+              <td><strong>Eliminator</strong></td>
+              <td>Late May 2026</td>
+              <td>3rd vs 4th place (loser out)</td>
+            </tr>
+            <tr>
+              <td><strong>Qualifier 2</strong></td>
+              <td>Late May 2026</td>
+              <td>Loser Q1 vs Winner Eliminator</td>
+            </tr>
+            <tr>
+              <td><strong>Grand Final</strong></td>
+              <td>May 31, 2026</td>
+              <td>Decided at Narendra Modi Stadium</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <ul>
+        <li><strong>Defending Champions:</strong> Royal Challengers Bengaluru (RCB)</li>
+        <li><strong>Matches Format:</strong> Standard league structure plus high-stakes playoffs</li>
+        <li><strong>Live Broadcasts:</strong> Star Sports Network & JioCinema (digital)</li>
+      </ul>
+    `
+  },
+  venues: {
+    title: "🏟️ TATA IPL 2026 Venues & Pitch Conditions",
+    content: `
+      <p>Matches are held across <strong>13 stadiums</strong> including primary home bases and secondary neutral venues to accommodate logistics and regional election-year schedules.</p>
+      <div class="chat-table-wrapper">
+        <table class="chat-table">
+          <thead>
+            <tr>
+              <th>Venue (City)</th>
+              <th>Home Team</th>
+              <th>Pitch Condition & Traits</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Narendra Modi (Ahmedabad)</strong></td>
+              <td>GT</td>
+              <td>Massive size; friction index favors spin drift in middle overs. Defending bias.</td>
+            </tr>
+            <tr>
+              <td><strong>Wankhede (Mumbai)</strong></td>
+              <td>MI</td>
+              <td>Red soil bounce, fast outfields; significant evening dew factor favoring chase.</td>
+            </tr>
+            <tr>
+              <td><strong>M. Chinnaswamy (Bengaluru)</strong></td>
+              <td>RCB</td>
+              <td>High altitude, short boundaries; flat track yielding ultra-high-scoring encounters.</td>
+            </tr>
+            <tr>
+              <td><strong>M.A. Chidambaram (Chennai)</strong></td>
+              <td>CSK</td>
+              <td>Dry, slow turner; favors traditional spin combinations and off-cutters.</td>
+            </tr>
+            <tr>
+              <td><strong>Eden Gardens (Kolkata)</strong></td>
+              <td>KKR</td>
+              <td>Sporting track with good pace and bounce, fast outfield with dew support.</td>
+            </tr>
+            <tr>
+              <td><strong>Dharamshala (Himachal)</strong></td>
+              <td>PBKS (Sec)</td>
+              <td>High altitude; cool weather allows high swing and seam movement early.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p><i>*Secondary Venues include Dharamshala, Guwahati, and Mullanpur, offering distinct weather conditions and grass-heavy pitches.</i></p>
+    `
+  },
+  rules: {
+    title: "📜 New Stricter BCCI Rules for 2026 Season",
+    content: `
+      <p>To improve discipline and match operations, the BCCI has implemented rigorous new rules for the 2026 season:</p>
+      <div class="chat-rules-card">
+        <div class="chat-rules-title">🚫 Ban on Match-Day Practice</div>
+        <p>Teams are strictly prohibited from conducting any practice sessions on match days to avoid pitch exhaustion and streamline security logistics.</p>
+      </div>
+      <div class="chat-rules-card">
+        <div class="chat-rules-title">⚡ 3.5-Hour Light Practice Limits</div>
+        <p>Evening practices under stadium lights are strictly capped at 3.5 hours. Teams are prohibited from sharing nets or using non-assigned pitches.</p>
+      </div>
+      <div class="chat-rules-card">
+        <div class="chat-rules-title">🚌 Mandatory Team Bus Transport</div>
+        <p>All players and support personnel are required to travel together in the official team bus for official practice sessions and games to manage traffic flow.</p>
+      </div>
+      <div class="chat-rules-card">
+        <div class="chat-rules-title">🧢 Presentation Cap Guidelines</div>
+        <p>Orange and Purple Cap holders are mandatory required to wear their respective caps during the first two overs of any match, and sleeveless shirts are banned in post-match presentations.</p>
+      </div>
+    `
+  },
+  teams: {
+    title: "🏆 TATA IPL 2026 Participating Teams & Captains",
+    content: `
+      <p>The 10 franchises representing their regions are competing with balanced squads and legendary leaders:</p>
+      <div class="chat-table-wrapper">
+        <table class="chat-table">
+          <thead>
+            <tr>
+              <th>Franchise Name</th>
+              <th>Team Captain</th>
+              <th>Primary Stadium</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Royal Challengers Bengaluru (RCB)</strong></td>
+              <td>Faf du Plessis</td>
+              <td>M. Chinnaswamy Stadium</td>
+            </tr>
+            <tr>
+              <td><strong>Chennai Super Kings (CSK)</strong></td>
+              <td>Ruturaj Gaikwad</td>
+              <td>M.A. Chidambaram Stadium</td>
+            </tr>
+            <tr>
+              <td><strong>Gujarat Titans (GT)</strong></td>
+              <td>Shubman Gill</td>
+              <td>Narendra Modi Stadium</td>
+            </tr>
+            <tr>
+              <td><strong>Mumbai Indians (MI)</strong></td>
+              <td>Hardik Pandya</td>
+              <td>Wankhede Stadium</td>
+            </tr>
+            <tr>
+              <td><strong>Kolkata Knight Riders (KKR)</strong></td>
+              <td>Shreyas Iyer</td>
+              <td>Eden Gardens</td>
+            </tr>
+            <tr>
+              <td><strong>Sunrisers Hyderabad (SRH)</strong></td>
+              <td>Pat Cummins</td>
+              <td>Rajiv Gandhi Stadium</td>
+            </tr>
+            <tr>
+              <td><strong>Delhi Capitals (DC)</strong></td>
+              <td>Rishabh Pant</td>
+              <td>Arun Jaitley Stadium</td>
+            </tr>
+            <tr>
+              <td><strong>Rajasthan Royals (RR)</strong></td>
+              <td>Sanju Samson</td>
+              <td>Sawai Mansingh Stadium</td>
+            </tr>
+            <tr>
+              <td><strong>Lucknow Super Giants (LSG)</strong></td>
+              <td>Nicholas Pooran</td>
+              <td>Ekana Stadium</td>
+            </tr>
+            <tr>
+              <td><strong>Punjab Kings (PBKS)</strong></td>
+              <td>Jitesh Sharma</td>
+              <td>Mullanpur / Dharamshala</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    `
+  },
+  caps: {
+    title: "🧢 Orange & Purple Cap Contenders (TATA IPL 2026)",
+    content: `
+      <p>Here are the latest top performers dominating the TATA IPL 2026 statistical leaderboards:</p>
+      <div class="chat-table-wrapper">
+        <table class="chat-table">
+          <thead>
+            <tr>
+              <th>Player & Team</th>
+              <th>Runs / Wkts</th>
+              <th>Current Standings & Impact Index</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Shubman Gill (GT)</strong> 🟠</td>
+              <td><strong>482 Runs</strong></td>
+              <td>Avg: 48.20 | Strike Rate: 146.8 (Highest impact opener at Narendra Modi Stadium)</td>
+            </tr>
+            <tr>
+              <td><strong>Virat Kohli (RCB)</strong> 🟠</td>
+              <td><strong>465 Runs</strong></td>
+              <td>Avg: 46.50 | Anchor rating of 9.6/10 (Leading runs in chase phases)</td>
+            </tr>
+            <tr>
+              <td><strong>Ruturaj Gaikwad (CSK)</strong> 🟠</td>
+              <td><strong>440 Runs</strong></td>
+              <td>Avg: 44.00 | Strike Rate: 142.1 (Crucial steady runs in Chepauk turners)</td>
+            </tr>
+            <tr>
+              <td><strong>Rashid Khan (GT)</strong> 🟣</td>
+              <td><strong>18 Wickets</strong></td>
+              <td>Econ: 5.50 | 32.8% dot-ball ratio (Leading wicket taker in middle overs)</td>
+            </tr>
+            <tr>
+              <td><strong>Jasprit Bumrah (MI)</strong> 🟣</td>
+              <td><strong>17 Wickets</strong></td>
+              <td>Econ: 6.00 | Leading death-over yorker efficiency metric (16 wickets in death phase)</td>
+            </tr>
+            <tr>
+              <td><strong>Yuzvendra Chahal (RR)</strong> 🟣</td>
+              <td><strong>16 Wickets</strong></td>
+              <td>Econ: 7.20 | Leading wicket taker in spinners-turn battles</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p><i>*Rules mandate that Orange/Purple Cap holders must wear their caps during the first two overs of match play!</i></p>
+    `
+  }
+};
+
 // 3. Elements Selection
 const switcher = document.getElementById("personaSwitcher");
 const systemPromptText = document.getElementById("system-prompt-text");
@@ -317,9 +563,20 @@ function handleChatSubmit(e) {
   const apiKey = localStorage.getItem("gemini_api_key") || DEFAULT_GEMINI_API_KEY;
   const context = personaData[currentPersona];
 
+  // Compile Ground Truth IPL 2026 Database for Gemini Injection
+  const iplGroundTruth = `
+    TATA IPL 2026 Official Ground Truth Reference Database:
+    - Schedule & Dates: March 28, 2026 to May 31, 2026. 74 total matches (70 league stage, 4 playoffs). Grand Final on May 31, 2026 at Narendra Modi Stadium (Ahmedabad).
+    - 10 Franchises & Captains: Royal Challengers Bengaluru (RCB - Faf du Plessis), Chennai Super Kings (CSK - Ruturaj Gaikwad), Gujarat Titans (GT - Shubman Gill), Mumbai Indians (MI - Hardik Pandya), Kolkata Knight Riders (KKR - Shreyas Iyer), Sunrisers Hyderabad (SRH - Pat Cummins), Delhi Capitals (DC - Rishabh Pant), Rajasthan Royals (RR - Sanju Samson), Lucknow Super Giants (LSG - Nicholas Pooran), Punjab Kings (PBKS - Jitesh Sharma).
+    - 13 Venues & Stadiums: Primary home bases: M. Chinnaswamy Stadium (Bengaluru - high altitude, small boundary, flat track), Wankhede Stadium (Mumbai - fast outfield, high dew factor favoring chasing team), Narendra Modi Stadium (Ahmedabad - massive capacity, high spin-friction index), M.A. Chidambaram Stadium (Chepauk, Chennai - slow, dry turner). Secondary neutral bases include Dharamshala (high swing & seam), Guwahati, Mullanpur.
+    - Stricter 2026 BCCI Rules: 1. Strict ban on match-day practice sessions. 2. 3.5-hour maximum practice duration under stadium lights. 3. Mandatory shared team bus transport for all practices/games. 4. Orange/Purple Cap holders must wear their caps during the first two overs of the match. 5. Strict dress code in post-match presentations (no sleeveless shirts).
+    - Orange Cap Contenders: Shubman Gill (GT - 482 runs), Virat Kohli (RCB - 465 runs), Ruturaj Gaikwad (CSK - 440 runs).
+    - Purple Cap Contenders: Rashid Khan (GT - 18 wickets, Econ 5.50), Jasprit Bumrah (MI - 17 wickets, Econ 6.00), Yuzvendra Chahal (RR - 16 wickets, Econ 7.20).
+  `;
+
   if (apiKey) {
     // MAKE REAL LIVE API CALL TO GEMINI 1.5 FLASH
-    const systemPrompt = context.systemPrompt;
+    const systemPrompt = `${context.systemPrompt}\n\n${iplGroundTruth}`;
     const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
     
     const payload = {
@@ -328,7 +585,7 @@ function handleChatSubmit(e) {
           role: "user",
           parts: [
             {
-              text: `System context for your persona:\n${systemPrompt}\n\nUser Question: ${query}\n\nAnswer the question accurately, focusing on Tata IPL. Keep it engaging, in character, and concise.`
+              text: `System Context & Ground Truth:\n${systemPrompt}\n\nUser Question: ${query}\n\nAnswer the question using the TATA IPL 2026 Ground Truth database where applicable. Keep it highly detailed, engaging, in character, and structured with HTML lists or custom tables if listing information.`
             }
           ]
         }
@@ -377,6 +634,29 @@ function handleChatSubmit(e) {
     // Map query response
     const normalizedQuery = query.toLowerCase();
     
+    // 1. TATA IPL 2026 Global Encyclopedia Check
+    if (normalizedQuery.includes("schedule") || normalizedQuery.includes("date") || normalizedQuery.includes("calendar") || normalizedQuery.includes("when is") || normalizedQuery.includes("final")) {
+      appendChatMessage("bot", `<h3>${ipl2026Database.schedule.title}</h3>${ipl2026Database.schedule.content}`);
+      return;
+    }
+    if (normalizedQuery.includes("venue") || normalizedQuery.includes("stadium") || normalizedQuery.includes("pitch") || normalizedQuery.includes("ground") || normalizedQuery.includes("where is")) {
+      appendChatMessage("bot", `<h3>${ipl2026Database.venues.title}</h3>${ipl2026Database.venues.content}`);
+      return;
+    }
+    if (normalizedQuery.includes("rule") || normalizedQuery.includes("bcci") || normalizedQuery.includes("guideline") || normalizedQuery.includes("regulation") || normalizedQuery.includes("ban") || normalizedQuery.includes("practice")) {
+      appendChatMessage("bot", `<h3>${ipl2026Database.rules.title}</h3>${ipl2026Database.rules.content}`);
+      return;
+    }
+    if (normalizedQuery.includes("team") || normalizedQuery.includes("captain") || normalizedQuery.includes("squad") || normalizedQuery.includes("franchise") || normalizedQuery.includes("leader") || normalizedQuery.includes("captains")) {
+      appendChatMessage("bot", `<h3>${ipl2026Database.teams.title}</h3>${ipl2026Database.teams.content}`);
+      return;
+    }
+    if (normalizedQuery.includes("cap") || normalizedQuery.includes("orange") || normalizedQuery.includes("purple") || normalizedQuery.includes("scorer") || normalizedQuery.includes("wicket") || normalizedQuery.includes("bowler") || normalizedQuery.includes("batsman")) {
+      appendChatMessage("bot", `<h3>${ipl2026Database.caps.title}</h3>${ipl2026Database.caps.content}`);
+      return;
+    }
+
+    // 2. Persona standard simulated reply
     let answer = context.chatResponses[normalizedQuery];
     if (!answer) {
       // Fuzzy search in current persona responses
@@ -387,13 +667,13 @@ function handleChatSubmit(e) {
       } else {
         // Fallback generic but personalized responder
         if (currentPersona === "gt-fan") {
-          answer = `As a dedicated Titans fan, I've checked the latest stats for "${query}". While we process live matches, Gill remains our top run scorer and Ahmedabad looks set for a spin battle next game!`;
+          answer = `As a dedicated Titans fan, I've checked the latest stats for "${query}". While we process live matches, Gill remains our top run scorer and Ahmedabad looks set for a spin battle next game! Try typing <b>"schedule"</b> or <b>"new rules"</b> for more detailed encyclopedia answers!`;
         } else if (currentPersona === "fantasy") {
-          answer = `Analyzing fantasy statistics for "${query}". Pitch indices show optimal balance for seam-bowling variance. I recommend reviewing player form and target picks before lineup locking!`;
+          answer = `Analyzing fantasy statistics for "${query}". Pitch indices show optimal balance for seam-bowling variance. I recommend reviewing player form and target picks before lineup locking! Try typing <b>"cap race"</b> to see top fantasy players!`;
         } else if (currentPersona === "casual") {
-          answer = `Wow! That's a super cool query about "${query}". The match is extremely heated, and you won't want to miss Gill's massive boundary streak coming up next!`;
+          answer = `Wow! That's a super cool query about "${query}". The match is extremely heated, and you won't want to miss Gill's massive boundary streak coming up next! Type <b>"teams"</b> to see all captains in 2026!`;
         } else {
-          answer = `Regression analysis modeling for "${query}" completed. Variance metrics are well within standard parameters. Ahmedabad's middle-over spin friction coefficient remains at 0.78.`;
+          answer = `Regression analysis modeling for "${query}" completed. Variance metrics are well within standard parameters. Ahmedabad's middle-over spin friction coefficient remains at 0.78. Type <b>"venues"</b> to view all stadium pitch traits.`;
         }
       }
     }
@@ -416,6 +696,42 @@ switcher.addEventListener("click", (e) => {
 });
 
 chatInputForm.addEventListener("submit", handleChatSubmit);
+
+// TATA IPL 2026 Reference Hub Click Actions
+const refButtons = ["schedule", "venues", "rules", "teams", "caps"];
+refButtons.forEach(topic => {
+  const btn = document.getElementById(`ref-${topic}`);
+  if (btn) {
+    btn.addEventListener("click", () => {
+      const data = ipl2026Database[topic];
+      if (!data) return;
+
+      // Append user bubble showing the clicked topic
+      appendChatMessage("user", `View ${topic.charAt(0).toUpperCase() + topic.slice(1)}`);
+      
+      // Simulated retrieval thinking delay
+      const typingDiv = document.createElement("div");
+      typingDiv.className = "chat-message bot";
+      typingDiv.id = "gemini-typing";
+      typingDiv.innerHTML = `
+        <div class="avatar">🤖</div>
+        <div class="message-bubble">
+          <p><i>Querying CricPulse TATA IPL 2026 Encyclopedia...</i></p>
+        </div>
+      `;
+      chatHistory.appendChild(typingDiv);
+      chatHistory.scrollTop = chatHistory.scrollHeight;
+
+      setTimeout(() => {
+        const typing = document.getElementById("gemini-typing");
+        if (typing) typing.remove();
+
+        // Render beautiful rich database entry in chat bubble
+        appendChatMessage("bot", `<h3>${data.title}</h3>${data.content}`);
+      }, 500);
+    });
+  }
+});
 
 // Re-Sync Button animation
 regenBtn.onclick = function() {
