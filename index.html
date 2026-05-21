@@ -20,6 +20,7 @@
       <div class="pulse-dot"></div>
       <h1 class="logo-text">CricPulse<span>.ai</span></h1>
       <span class="badge">IPL 2026 Live</span>
+      <button class="settings-btn" id="open-settings-btn" title="AI Settings">⚙️</button>
     </div>
     
     <!-- Persona Switcher -->
@@ -322,6 +323,30 @@ Tone: Enthusiastic, supportive, extremely knowledgeable on GT roster.
   <footer class="app-footer">
     <p>CricPulse.ai Prototype &copy; 2026 Tata IPL Hackathon. Engineered with Google AI Studio & Gemini.</p>
   </footer>
+
+  <!-- Settings Modal -->
+  <div class="modal-overlay hidden" id="settings-modal">
+    <div class="panel modal-content">
+      <div class="panel-header">
+        <h2>CricPulse AI Settings</h2>
+        <button class="close-modal-btn" id="close-settings-btn">&times;</button>
+      </div>
+      <div class="widget-body">
+        <p class="widget-desc">Connect CricPulse.ai to your Google AI Studio account to enable real-time, live Gemini 1.5 Pro answers!</p>
+        <div class="input-group">
+          <label for="gemini-api-key" class="switcher-label" style="display:block; margin-bottom: 0.5rem; text-align: left;">Google Gemini API Key:</label>
+          <input type="password" id="gemini-api-key" class="modal-input" placeholder="Paste your APIzaSy... key here">
+        </div>
+        <div class="modal-actions" style="margin-top: 1.25rem; display: flex; gap: 0.75rem;">
+          <button class="switcher-btn active" id="save-settings-btn" style="flex:1; justify-content:center;">Save</button>
+          <button class="switcher-btn" id="clear-settings-btn" style="flex:1; justify-content:center; background: rgba(244,63,94,0.15); border: 1px solid var(--color-pulse); color: var(--color-pulse);">Clear Key</button>
+        </div>
+        <p class="widget-desc" style="font-size: 0.7rem; margin-top: 0.75rem; color: var(--text-dimmed); text-align: center;">
+          Don't have a key? Get one for free at <a href="https://aistudio.google.com/" target="_blank" style="color: var(--active-accent); text-decoration: underline;">Google AI Studio</a>.
+        </p>
+      </div>
+    </div>
+  </div>
 
   <script src="app.js"></script>
 </body>

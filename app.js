@@ -312,13 +312,68 @@ function handleChatSubmit(e) {
   chatHistory.appendChild(typingDiv);
   chatHistory.scrollTop = chatHistory.scrollHeight;
 
+  // Check for live API Key
+  const apiKey = localStorage.getItem("gemini_api_key");
+  const context = personaData[currentPersona];
+
+  if (apiKey) {
+    // MAKE REAL LIVE API CALL TO GEMINI 1.5 FLASH
+    const systemPrompt = context.systemPrompt;
+    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    
+    const payload = {
+      contents: [
+        {
+          role: "user",
+          parts: [
+            {
+              text: `System context for your persona:\n${systemPrompt}\n\nUser Question: ${query}\n\nAnswer the question accurately, focusing on Tata IPL. Keep it engaging, in character, and concise.`
+            }
+          ]
+        }
+      ]
+    };
+    
+    fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    })
+    .then(res => res.json())
+    .then(data => {
+      // Remove typing bubble
+      const typing = document.getElementById("gemini-typing");
+      if (typing) typing.remove();
+      
+      let answer = "";
+      try {
+        answer = data.candidates[0].content.parts[0].text;
+      } catch (err) {
+        answer = "I received a live network reply, but could not parse the content candidate. Please double-check your API key limits and status.";
+        console.error("Gemini Error:", data);
+      }
+      appendChatMessage("bot", answer);
+    })
+    .catch(err => {
+      // Remove typing bubble
+      const typing = document.getElementById("gemini-typing");
+      if (typing) typing.remove();
+      
+      appendChatMessage("bot", "Network Connection Error: Direct browser call to Google AI Studio failed. Check your internet connection.");
+      console.error("Network Error:", err);
+    });
+    return;
+  }
+
+  // FALLBACK SIMULATION (Fuzzy-Match database)
   setTimeout(() => {
     // Remove typing bubble
     const typing = document.getElementById("gemini-typing");
     if (typing) typing.remove();
 
     // Map query response
-    const context = personaData[currentPersona];
     const normalizedQuery = query.toLowerCase();
     
     let answer = context.chatResponses[normalizedQuery];
@@ -375,7 +430,58 @@ regenBtn.onclick = function() {
   }, 800);
 };
 
-// 9. Initial Load Setup (Gujarat Titans Fan is Default)
+// 9. Settings Modal Controls
+const settingsModal = document.getElementById("settings-modal");
+const openSettingsBtn = document.getElementById("open-settings-btn");
+const closeSettingsBtn = document.getElementById("close-settings-btn");
+const saveSettingsBtn = document.getElementById("save-settings-btn");
+const clearSettingsBtn = document.getElementById("clear-settings-btn");
+const geminiApiKeyField = document.getElementById("gemini-api-key");
+
+// Open Modal
+openSettingsBtn.onclick = () => {
+  const savedKey = localStorage.getItem("gemini_api_key");
+  if (savedKey) {
+    geminiApiKeyField.value = savedKey;
+  } else {
+    geminiApiKeyField.value = "";
+  }
+  settingsModal.classList.remove("hidden");
+};
+
+// Close Modal
+closeSettingsBtn.onclick = () => {
+  settingsModal.classList.add("hidden");
+};
+
+// Save Settings
+saveSettingsBtn.onclick = () => {
+  const key = geminiApiKeyField.value.trim();
+  if (key) {
+    localStorage.setItem("gemini_api_key", key);
+    alert("Configurations saved! CricPulse.ai is now connected live to Google AI Studio.");
+  } else {
+    localStorage.removeItem("gemini_api_key");
+  }
+  settingsModal.classList.add("hidden");
+};
+
+// Clear Settings
+clearSettingsBtn.onclick = () => {
+  localStorage.removeItem("gemini_api_key");
+  geminiApiKeyField.value = "";
+  alert("API Key cleared. CricPulse.ai will revert back to high-fidelity simulated response modes.");
+  settingsModal.classList.add("hidden");
+};
+
+// Close on clicking outside modal content
+settingsModal.onclick = (e) => {
+  if (e.target === settingsModal) {
+    settingsModal.classList.add("hidden");
+  }
+};
+
+// 10. Initial Load Setup (Gujarat Titans Fan is Default)
 window.onload = () => {
   setPersona("gt-fan");
 };
