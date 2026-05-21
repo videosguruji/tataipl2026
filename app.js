@@ -122,6 +122,7 @@ Tone: Ultra-precise, dry, quantitative, technical.`,
 };
 
 // 2. State Indicators
+const DEFAULT_GEMINI_API_KEY = "AIzaSyDcd4dHBewHDORmo6KPbIps3cIvwxNzoDk";
 let currentPersona = "gt-fan";
 
 // 3. Elements Selection
@@ -312,8 +313,8 @@ function handleChatSubmit(e) {
   chatHistory.appendChild(typingDiv);
   chatHistory.scrollTop = chatHistory.scrollHeight;
 
-  // Check for live API Key
-  const apiKey = localStorage.getItem("gemini_api_key");
+  // Check for live API Key or Fallback to Default
+  const apiKey = localStorage.getItem("gemini_api_key") || DEFAULT_GEMINI_API_KEY;
   const context = personaData[currentPersona];
 
   if (apiKey) {
@@ -440,12 +441,8 @@ const geminiApiKeyField = document.getElementById("gemini-api-key");
 
 // Open Modal
 openSettingsBtn.onclick = () => {
-  const savedKey = localStorage.getItem("gemini_api_key");
-  if (savedKey) {
-    geminiApiKeyField.value = savedKey;
-  } else {
-    geminiApiKeyField.value = "";
-  }
+  const savedKey = localStorage.getItem("gemini_api_key") || DEFAULT_GEMINI_API_KEY;
+  geminiApiKeyField.value = savedKey;
   settingsModal.classList.remove("hidden");
 };
 
