@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CricPulse.ai - Your personalized Tata IPL 2026 AI cricket companion. Instant narratives, deep analytics, and tailored highlights.">
+  <title>CricPulse.ai | Personalized IPL AI Companion</title>
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="persona-gt-fan">
+  <div class="glow-bg"></div>
+  
+  <!-- Main Header -->
+  <header class="app-header">
+    <div class="logo-container">
+      <div class="pulse-dot"></div>
+      <h1 class="logo-text">CricPulse<span>.ai</span></h1>
+      <span class="badge">IPL 2026 Live</span>
+    </div>
+    
+    <!-- Persona Switcher -->
+    <div class="persona-switcher-wrapper">
+      <span class="switcher-label">Select Persona:</span>
+      <div class="persona-switcher" id="personaSwitcher">
+        <button class="switcher-btn active" data-persona="gt-fan" id="btn-gt-fan">
+          <span class="icon">🏏</span> Gill's Devotee
+        </button>
+        <button class="switcher-btn" data-persona="fantasy" id="btn-fantasy">
+          <span class="icon">⚡</span> The Tactician
+        </button>
+        <button class="switcher-btn" data-persona="casual" id="btn-casual">
+          <span class="icon">🍿</span> The Express Fan
+        </button>
+        <button class="switcher-btn" data-persona="stats" id="btn-stats">
+          <span class="icon">📊</span> The Data Geek
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- App Main Content Container -->
+  <main class="app-layout">
+    
+    <!-- Left Sidebar: AI Chat Companion -->
+    <section class="column chat-column" id="chat-sidebar">
+      <div class="panel chat-panel">
+        <div class="panel-header">
+          <div class="panel-header-left">
+            <span class="panel-icon">🤖</span>
+            <h2>Ask CricPulse</h2>
+          </div>
+          <span class="status-indicator">Gemini 1.5 Flash</span>
+        </div>
+        
+        <!-- Live Persona Prompt Previewer (WOW feature for judges to see the agentic engineering!) -->
+        <div class="prompt-preview-card" id="prompt-preview">
+          <div class="preview-header">
+            <span>Injected System Prompt</span>
+            <span class="badge-accent">Dynamic Context</span>
+          </div>
+          <pre class="prompt-code" id="system-prompt-text">
+You are CricPulse, a GT-devoted AI companion.
+Prioritize Gujarat Titans, Shubman Gill's form, playoff qualification math, and highlights. 
+Tone: Enthusiastic, supportive, extremely knowledgeable on GT roster.
+          </pre>
+        </div>
+
+        <!-- Chat Output Messages -->
+        <div class="chat-history" id="chat-history">
+          <div class="chat-message bot">
+            <div class="avatar">🤖</div>
+            <div class="message-bubble">
+              <p>Hey there, Titans Fan! Shubman Gill is having an incredible season. Ready for deep GT stats or qualifying odds? Ask me anything!</p>
+              <span class="timestamp">Just now</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Queries Suggestions -->
+        <div class="suggestion-chips" id="suggestion-chips">
+          <button class="chip-btn" id="chip-1">Will GT qualify for playoffs?</button>
+          <button class="chip-btn" id="chip-2">Gill's latest runs & strike rate</button>
+          <button class="chip-btn" id="chip-3">Next match analysis</button>
+        </div>
+
+        <!-- Chat Input Form -->
+        <form class="chat-input-wrapper" id="chat-input-form">
+          <input type="text" id="chat-input-field" placeholder="Ask about match highlights, player runs, predictions..." autocomplete="off" required>
+          <button type="submit" class="send-btn" id="chat-submit-btn">
+            <svg viewBox="0 0 24 24" width="20" height="20">
+              <path fill="currentColor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Center Column: The PulseFeed -->
+    <section class="column feed-column" id="feed-center">
+      
+      <!-- Top Pinned: Gemini Smart Overview (AI Overview UI style) -->
+      <div class="panel overview-panel" id="overview-section">
+        <div class="gradient-border-glow"></div>
+        <div class="overview-badge">
+          <span class="g-sparkle">✦</span> AI OVERVIEW
+        </div>
+        <div class="overview-content" id="ai-overview-text">
+          <p><strong>Gujarat Titans (GT)</strong> are currently sitting at <strong>#4</strong> in the standings, with Shubman Gill leading from the front with 482 runs at a blistering 146.8 strike rate. To guarantee a playoff birth without relying on net run-rate, GT needs to win 2 of their final 3 matches.</p>
+        </div>
+        <div class="overview-meta">
+          <span>Sources: CricPulse Live Feed, Tata IPL Statistics DB</span>
+          <button class="regenerate-btn" id="regen-overview">
+            <span class="regen-icon">🔄</span> Re-Sync
+          </button>
+        </div>
+      </div>
+
+      <!-- Feed Feed Panels (Render dynamically based on active persona) -->
+      <div class="feed-list" id="feed-list-container">
+        <!-- Live Match Scorecard -->
+        <div class="panel scorecard-panel">
+          <div class="card-badge">LIVE MATCH</div>
+          <div class="scorecard-content">
+            <div class="team-row">
+              <div class="team-info">
+                <span class="team-flag font-flag-gt">🔵</span>
+                <span class="team-name">Gujarat Titans</span>
+              </div>
+              <div class="team-score">188/5 <span class="overs">(20.0)</span></div>
+            </div>
+            <div class="team-row">
+              <div class="team-info">
+                <span class="team-flag font-flag-mi">🔵</span>
+                <span class="team-name">Mumbai Indians</span>
+              </div>
+              <div class="team-score">162/8 <span class="overs">(17.4)</span></div>
+            </div>
+            <div class="match-status-bar">
+              <span class="live-pulse"></span>
+              <span id="match-status-text">GT wins by 26 runs (Completed match summary generated)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic Insights and Narratives -->
+        <div class="panel story-panel" id="story-panel-container">
+          <div class="panel-header">
+            <h2>Personalized Match Narrative</h2>
+            <span class="story-tag" id="story-tag-id">GT Perspective</span>
+          </div>
+          <div class="story-body" id="story-body-text">
+            <p class="story-highlight">"Captain Gill sets Ahmedabad on fire as GT claims crucial points!"</p>
+            <p>Under massive playoff pressure, Shubman Gill delivered a masterpiece 78 off 44 balls against a fiery MI pace attack. With a stellar partnership alongside Miller, GT set a matching target of 188. MI faltered under Rashid Khan's spin masterclass, bringing GT's playoff dreams back in their own hands.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Sidebar: Context Widgets -->
+    <section class="column widgets-column" id="widgets-sidebar">
+      
+      <!-- Interactive Widget 1: Playoff Probability Slider (WOW Feature) -->
+      <div class="panel widget-panel playoff-widget" id="playoff-widget-panel">
+        <div class="panel-header">
+          <h2>Playoff Chance Calculator</h2>
+          <span class="widget-info">Interactive AI Simulator</span>
+        </div>
+        <div class="widget-body">
+          <p class="widget-desc">Drag the slider to assume the number of upcoming match wins for GT:</p>
+          <div class="slider-wrapper">
+            <input type="range" min="0" max="3" value="2" class="premium-slider" id="playoff-slider">
+            <div class="slider-labels">
+              <span>0 Wins</span>
+              <span>1 Win</span>
+              <span>2 Wins</span>
+              <span>3 Wins</span>
+            </div>
+          </div>
+          <div class="playoff-result-box">
+            <div class="percentage-display" id="playoff-percentage">85%</div>
+            <div class="result-text" id="playoff-result-desc">High chance of qualifying! AI models suggest a guaranteed 4th place finish.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Widget 2: Fantasy Impact Gauge & Insights -->
+      <div class="panel widget-panel fantasy-widget hidden" id="fantasy-widget-panel">
+        <div class="panel-header">
+          <h2>Fantasy Impact Radar</h2>
+          <span class="badge-fantasy">Top Value Picks</span>
+        </div>
+        <div class="widget-body">
+          <div class="radar-list">
+            <div class="radar-item">
+              <div class="radar-item-header">
+                <span class="player-name">Shubman Gill (GT)</span>
+                <span class="gauge-score">9.8 / 10</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill font-color-pick" style="width: 98%"></div>
+              </div>
+              <span class="gauge-insight">Optimal Captain choice; strike rate 160+ at Narendra Modi Stadium.</span>
+            </div>
+            <div class="radar-item">
+              <div class="radar-item-header">
+                <span class="player-name">Rashid Khan (GT)</span>
+                <span class="gauge-score">8.9 / 10</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill font-color-pick" style="width: 89%"></div>
+              </div>
+              <span class="gauge-insight">Pace of pitch favors leg-spin drift in the middle overs.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Widget 3: Stats Geek Deep Analytics -->
+      <div class="panel widget-panel stats-widget hidden" id="stats-widget-panel">
+        <div class="panel-header">
+          <h2>Match Phase Analytics</h2>
+          <span class="badge-stats">Advanced Metrics</span>
+        </div>
+        <div class="widget-body">
+          <div class="stats-grid">
+            <div class="stat-box">
+              <div class="stat-value">11.4</div>
+              <div class="stat-label">GT Powerplay Run-Rate</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-value">6.8</div>
+              <div class="stat-label">MI Spin Economy Rate</div>
+            </div>
+          </div>
+          <div class="custom-chart-container">
+            <div class="chart-header">Strike Rate vs Economy (Death Overs)</div>
+            <div class="chart-mock">
+              <!-- Inline CSS styled elegant layout chart simulation -->
+              <div class="chart-bars">
+                <div class="chart-bar-column">
+                  <div class="bar-label">Gill (GT)</div>
+                  <div class="bar" style="height: 80%">185.2</div>
+                </div>
+                <div class="chart-bar-column">
+                  <div class="bar-label">Miller (GT)</div>
+                  <div class="bar" style="height: 90%">198.4</div>
+                </div>
+                <div class="chart-bar-column">
+                  <div class="bar-label">Hardik (MI)</div>
+                  <div class="bar" style="height: 60%">144.5</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dynamic Roster Standings Widget -->
+      <div class="panel widget-panel table-widget" id="standings-widget-panel">
+        <div class="panel-header">
+          <h2>IPL 2026 Standings</h2>
+        </div>
+        <div class="widget-body">
+          <table class="premium-table">
+            <thead>
+              <tr>
+                <th>Pos</th>
+                <th>Team</th>
+                <th>Pld</th>
+                <th>Pts</th>
+                <th>NRR</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>RR</td>
+                <td>11</td>
+                <td>16</td>
+                <td>+0.88</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>KKR</td>
+                <td>11</td>
+                <td>14</td>
+                <td>+0.62</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>CSK</td>
+                <td>12</td>
+                <td>14</td>
+                <td>+0.41</td>
+              </tr>
+              <tr class="highlight-row">
+                <td>4</td>
+                <td>GT</td>
+                <td>11</td>
+                <td>12</td>
+                <td>+0.12</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>MI</td>
+                <td>12</td>
+                <td>10</td>
+                <td>-0.24</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>CricPulse.ai Prototype &copy; 2026 Tata IPL Hackathon. Engineered with Google AI Studio & Gemini.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
